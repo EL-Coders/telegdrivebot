@@ -7,19 +7,21 @@ class ParentID(BASE):
     chat_id = Column(Numeric, primary_key=True)
     parent_id = Column(String)
 
-
     def __init__(self, chat_id, parent_id):
         self.chat_id = chat_id
         self.parent_id = parent_id
+
 
 ParentID.__table__.create(checkfirst=True)
 
 
 def search_parent(chat_id):
     try:
-        return SESSION.query(ParentID).filter(ParentID.chat_id == chat_id).one().parent_id
+        return (
+            SESSION.query(ParentID).filter(ParentID.chat_id == chat_id).one().parent_id
+        )
     except:
-        return 'root'
+        return "root"
     finally:
         SESSION.close()
 
@@ -29,10 +31,7 @@ def _set(chat_id, parent_id):
     if adder:
         adder.parent_id = parent_id
     else:
-        adder = ParentID(
-            chat_id,
-            parent_id
-        )
+        adder = ParentID(chat_id, parent_id)
     SESSION.add(adder)
     SESSION.commit()
 

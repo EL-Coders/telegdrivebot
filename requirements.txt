@@ -1,6 +1,7 @@
 wget
 asyncio
-pyrogram==1.4.16
+# pyrogram==1.4.16
+pyrofork
 tgcrypto
 oauth2client
 psycopg2-binary
@@ -10,6 +11,7 @@ pySmartDL
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
-youtube_dl
+yt-dlp
 ffmpeg
 tenacity
+python-dotenv
